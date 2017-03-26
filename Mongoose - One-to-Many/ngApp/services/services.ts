@@ -8,7 +8,7 @@ namespace myapp.Services {
       }
 
       public list() {
-        return this.CartResource.query();
+        return this.CartResource.get();
       }
 
       constructor($resource:ng.resource.IResourceService) {
