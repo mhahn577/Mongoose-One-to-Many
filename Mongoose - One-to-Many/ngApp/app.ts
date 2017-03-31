@@ -11,13 +11,19 @@ namespace myapp {
                 url: '/',
                 templateUrl: '/ngApp/views/home.html',
                 controller: myapp.Controllers.HomeController,
-                controllerAs: 'controller'
+                controllerAs: 'vm'
             })
-            .state('about', {
-                url: '/about',
-                templateUrl: '/ngApp/views/about.html',
-                controller: myapp.Controllers.AboutController,
-                controllerAs: 'controller'
+            .state('add', {
+                url: '/add',
+                templateUrl: '/ngApp/views/addCartItem.html',
+                controller: myapp.Controllers.AddCartItemController,
+                controllerAs: 'vm'
+            })
+            .state('edit', {
+                url: '/edit/:id',
+                templateUrl: '/ngApp/views/editCartItem.html',
+                controller: myapp.Controllers.EditCartItemController,
+                controllerAs: 'vm'
             })
             .state('notFound', {
                 url: '/notFound',
@@ -31,6 +37,6 @@ namespace myapp {
         $locationProvider.html5Mode(true);
     });
 
-    
+
 
 }

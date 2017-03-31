@@ -1,20 +1,25 @@
 namespace myapp.Services {
+  export class CartItemService {
+    public CartItemResource
 
-  export class CartService {
-      private CartResource;
+    public saveCartItem(cartitem) {
+      return this.CartItemResource.save(cartitem);
+    }
 
-      public get(id) {
-        return this.CartResource.get({id:id});
-      }
+    public getCartItems(shoppingcart) {
+      return this.CartItemResource.query({tag: shoppingcart}).$promise;
+    }
 
-      public list() {
-        return this.CartResource.get();
-      }
+    public removeCartItem(cartitemId) {
+      return this.CartItemResource.delete({tag: cartitemId})
+    }
 
-      constructor($resource:ng.resource.IResourceService) {
-        this.CartResource = $resource('/api/carts');
-      }
+    public constructor(
+      public $resource
+    ) {
+      this.CartItemResource = $resource('/api/cartitems/:tag');
+    }
   }
 
-  angular.module('myapp').service('cartService', CartService);
+  angular.module('myapp').service('cartitemService', CartItemService);
 }

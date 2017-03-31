@@ -1,5 +1,4 @@
 import ShoppingCart from './models/shoppingCart';
-import shoppingcarts from './api/carts';
 import * as express from 'express';
 import * as path from 'path';
 import * as favicon from 'serve-favicon';
@@ -83,7 +82,7 @@ mongoose.connect(connectionString).then(() => {
     // create shopping cart
     var shoppingCart = new ShoppingCart();
     shoppingCart.username = "MichaelH";
-    shoppingCart.items.push(
+    shoppingCart.cartitems.push(
       {productName: 'Milk', price: 2.33},
       {productName: 'Cheese', price: 1.77},
       {productName: 'Oranges', price: 3.33}

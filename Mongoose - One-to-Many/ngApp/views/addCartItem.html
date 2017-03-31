@@ -1,0 +1,9 @@
+<h2>Add Cart Item</h2>
+
+<input type="text" placeholder="Product Name..." ng-model="vm.cartitem.productname" />
+<input type="text" placeholder="Price..." ng-model="vm.cartitem.price" />
+<select ng-model="vm.cartitem.shoppingcart">
+  <option value="Michael">Michael</option>
+</select>
+
+<button type="button" ng-click="vm.addCartItem()">Add</button>

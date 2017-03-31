@@ -1,10 +1,14 @@
 <h2>Home</h2>
-<p>
-    {{controller.message}}
-</p>
+
+<a href="/add">Add Cart Item</a>
+
+<div style="border-top: 1px solid #000000; padding-bottom: 25px;"></div>
+
+<p>Search by shopping cart</p>
+<select ng-model="vm.shoppingcart" ng-change="vm.getCartItems()">
+  <option value="Michael">Michael</option>
+</select>
 
 <ul>
-  <li ng-repeat="items in controller.carts">
-    {{item}}
-  </li>
+  <li ng-repeat="p in vm.cartitems">{{p.productname}} <a href="/edit/{{p._id}}">EDIT</a> <a href="#" ng-click="vm.deleteCartItem(p._id)">DELETE</a></li>
 </ul>

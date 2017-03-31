@@ -55,7 +55,7 @@ mongoose.connect(connectionString).then(function () {
     mongoose.connection.db.dropDatabase(function () {
         var shoppingCart = new shoppingCart_1.default();
         shoppingCart.username = "MichaelH";
-        shoppingCart.items.push({ productName: 'Milk', price: 2.33 }, { productName: 'Cheese', price: 1.77 }, { productName: 'Oranges', price: 3.33 });
+        shoppingCart.cartitems.push({ productName: 'Milk', price: 2.33 }, { productName: 'Cheese', price: 1.77 }, { productName: 'Oranges', price: 3.33 });
         shoppingCart.save();
         console.log('Saved shoppingCart');
     });

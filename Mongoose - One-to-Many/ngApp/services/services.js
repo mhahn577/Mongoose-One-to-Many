@@ -2,19 +2,23 @@ var myapp;
 (function (myapp) {
     var Services;
     (function (Services) {
-        var CartService = (function () {
-            function CartService($resource) {
-                this.CartResource = $resource('/api/carts');
+        var CartItemService = (function () {
+            function CartItemService($resource) {
+                this.$resource = $resource;
+                this.CartItemResource = $resource('/api/cartitems/:tag');
             }
-            CartService.prototype.get = function (id) {
-                return this.CartResource.get({ id: id });
+            CartItemService.prototype.saveCartItem = function (cartitem) {
+                return this.CartItemResource.save(cartitem);
             };
-            CartService.prototype.list = function () {
-                return this.CartResource.query();
+            CartItemService.prototype.getCartItems = function (shoppingcart) {
+                return this.CartItemResource.query({ tag: shoppingcart }).$promise;
             };
-            return CartService;
+            CartItemService.prototype.removeCartItem = function (cartitemId) {
+                return this.CartItemResource.delete({ tag: cartitemId });
+            };
+            return CartItemService;
         }());
-        Services.CartService = CartService;
-        angular.module('myapp').service('cartService', CartService);
+        Services.CartItemService = CartItemService;
+        angular.module('myapp').service('cartitemService', CartItemService);
     })(Services = myapp.Services || (myapp.Services = {}));
 })(myapp || (myapp = {}));
