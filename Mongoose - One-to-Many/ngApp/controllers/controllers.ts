@@ -1,52 +1,53 @@
 namespace myapp.Controllers {
 
     export class HomeController {
-      public shoppingcart
-      public cartitems
+      public category
+      public places
 
-      public getCartItems() {
-        this.cartitemService.getCartItems(this.shoppingcart).then((result) => {
-          this.cartitems = result;
+      public getPlaces() {
+        this.placeService.getPlaces(this.category).then((result) => {
+          this.places = result;
         })
       }
 
-      public deleteCartItem(cartitemId) {
-        this.cartitemService.removeCartItem(cartitemId);
+      public deletePlace(placeId) {
+        this.placeService.removePlace(placeId);
       }
 
       public constructor(
-        private cartitemService
+        private placeService
       ) {
       }
     }
 
-    export class AddCartItemController {
-      public cartitem
 
-      public addCartItem() {
-        this.cartitemService.saveCartItem(this.cartitem);
+    export class AddPlaceController {
+      public place
+
+      public addPlace() {
+        this.placeService.savePlace(this.place);
       }
 
       public constructor(
-        private cartitemService
+        private placeService
       ) {
       }
     }
 
-    export class EditCartItemController {
-      public cartitem
-      public cartitemId
+    export class EditPlaceController {
+      public place
+      public placeId
 
-      public editCartItem() {
-        this.cartitem._id = this.cartitemId;
-        this.cartitemService.saveCartItem(this.cartitem);
+      public editPlace() {
+        this.place._id = this.placeId;
+        this.placeService.savePlace(this.place);
       }
 
       public constructor(
         public $stateParams,
-        private cartitemService
+        private placeService
       ) {
-        this.cartitemId = $stateParams['id'];
+        this.placeId = $stateParams['id'];
       }
     }
 

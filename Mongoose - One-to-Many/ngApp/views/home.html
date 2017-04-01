@@ -1,14 +1,16 @@
 <h2>Home</h2>
 
-<a href="/add">Add Cart Item</a>
+<a href="/add">Add Place</a>
 
 <div style="border-top: 1px solid #000000; padding-bottom: 25px;"></div>
 
-<p>Search by shopping cart</p>
-<select ng-model="vm.shoppingcart" ng-change="vm.getCartItems()">
-  <option value="Michael">Michael</option>
+<p>Search by category</p>
+<select ng-model="vm.category" ng-change="vm.getPlaces()">
+  <option value="food">Food</option>
+  <option value="drink">Drink</option>
+  <option value="entertainment">Entertainment</option>
 </select>
 
 <ul>
-  <li ng-repeat="p in vm.cartitems">{{p.productname}} <a href="/edit/{{p._id}}">EDIT</a> <a href="#" ng-click="vm.deleteCartItem(p._id)">DELETE</a></li>
+  <li ng-repeat="p in vm.places">{{p.name}} <a href="/edit/{{p._id}}">EDIT</a> <a href="#" ng-click="vm.deletePlace(p._id)">DELETE</a></li>
 </ul>

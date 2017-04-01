@@ -10,14 +10,14 @@ var myapp;
         })
             .state('add', {
             url: '/add',
-            templateUrl: '/ngApp/views/addCartItem.html',
-            controller: myapp.Controllers.AddCartItemController,
+            templateUrl: '/ngApp/views/addPlace.html',
+            controller: myapp.Controllers.AddPlaceController,
             controllerAs: 'vm'
         })
             .state('edit', {
             url: '/edit/:id',
-            templateUrl: '/ngApp/views/editCartItem.html',
-            controller: myapp.Controllers.EditCartItemController,
+            templateUrl: '/ngApp/views/editPlace.html',
+            controller: myapp.Controllers.EditPlaceController,
             controllerAs: 'vm'
         })
             .state('notFound', {

@@ -1,4 +1,3 @@
-import ShoppingCart from './models/shoppingCart';
 import * as express from 'express';
 import * as path from 'path';
 import * as favicon from 'serve-favicon';
@@ -6,9 +5,11 @@ import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as ejs from 'ejs';
+import * as mongoose from 'mongoose';
 
 import routes from './routes/index';
 import users from './routes/users';
+import places from './api/places';
 
 let app = express();
 
@@ -27,8 +28,12 @@ app.use('/bower_components', express.static(path.join(__dirname, 'bower_componen
 app.use('/ngApp', express.static(path.join(__dirname, 'ngApp')));
 app.use('/api', express.static(path.join(__dirname, 'api')));
 
+const connectionString:string = 'mongodb://MichaelH:987db1789@ds041150.mlab.com:41150/mhahn577database1';
+mongoose.connect('mongodb://MichaelH:987db1789@ds041150.mlab.com:41150/mhahn577database1');
+
 app.use('/', routes);
 app.use('/users', users);
+app.use('/api/places', places);
 
 
 // redirect 404 to home for the sake of AngularJS client-side routes
@@ -69,28 +74,6 @@ app.use((err:Error, req, res, next) => {
   res.render('error', {
     message: err.message,
     error: {}
-  });
-});
-
-const connectionString:string = 'mongodb://MichaelH:987db1789@ds041150.mlab.com:41150/mhahn577database1';
-
-import * as mongoose from 'mongoose';
-mongoose.connect(connectionString).then(() => {
-  // add sample data
-  mongoose.connection.db.dropDatabase(() => {
-
-    // create shopping cart
-    var shoppingCart = new ShoppingCart();
-    shoppingCart.username = "MichaelH";
-    shoppingCart.cartitems.push(
-      {productName: 'Milk', price: 2.33},
-      {productName: 'Cheese', price: 1.77},
-      {productName: 'Oranges', price: 3.33}
-    );
-
-    shoppingCart.save();
-    console.log('Saved shoppingCart');
-
   });
 });
 

@@ -3,43 +3,43 @@ var myapp;
     var Controllers;
     (function (Controllers) {
         var HomeController = (function () {
-            function HomeController(cartitemService) {
-                this.cartitemService = cartitemService;
+            function HomeController(placeService) {
+                this.placeService = placeService;
             }
-            HomeController.prototype.getCartItems = function () {
+            HomeController.prototype.getPlaces = function () {
                 var _this = this;
-                this.cartitemService.getCartItems(this.shoppingcart).then(function (result) {
-                    _this.cartitems = result;
+                this.placeService.getPlaces(this.category).then(function (result) {
+                    _this.places = result;
                 });
             };
-            HomeController.prototype.deleteCartItem = function (cartitemId) {
-                this.cartitemService.removeCartItem(cartitemId);
+            HomeController.prototype.deletePlace = function (placeId) {
+                this.placeService.removePlace(placeId);
             };
             return HomeController;
         }());
         Controllers.HomeController = HomeController;
-        var AddCartItemController = (function () {
-            function AddCartItemController(cartitemService) {
-                this.cartitemService = cartitemService;
+        var AddPlaceController = (function () {
+            function AddPlaceController(placeService) {
+                this.placeService = placeService;
             }
-            AddCartItemController.prototype.addCartItem = function () {
-                this.cartitemService.saveCartItem(this.cartitem);
+            AddPlaceController.prototype.addPlace = function () {
+                this.placeService.savePlace(this.place);
             };
-            return AddCartItemController;
+            return AddPlaceController;
         }());
-        Controllers.AddCartItemController = AddCartItemController;
-        var EditCartItemController = (function () {
-            function EditCartItemController($stateParams, cartitemService) {
+        Controllers.AddPlaceController = AddPlaceController;
+        var EditPlaceController = (function () {
+            function EditPlaceController($stateParams, placeService) {
                 this.$stateParams = $stateParams;
-                this.cartitemService = cartitemService;
-                this.cartitemId = $stateParams['id'];
+                this.placeService = placeService;
+                this.placeId = $stateParams['id'];
             }
-            EditCartItemController.prototype.editCartItem = function () {
-                this.cartitem._id = this.cartitemId;
-                this.cartitemService.saveCartItem(this.cartitem);
+            EditPlaceController.prototype.editPlace = function () {
+                this.place._id = this.placeId;
+                this.placeService.savePlace(this.place);
             };
-            return EditCartItemController;
+            return EditPlaceController;
         }());
-        Controllers.EditCartItemController = EditCartItemController;
+        Controllers.EditPlaceController = EditPlaceController;
     })(Controllers = myapp.Controllers || (myapp.Controllers = {}));
 })(myapp || (myapp = {}));

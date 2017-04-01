@@ -2,23 +2,23 @@ var myapp;
 (function (myapp) {
     var Services;
     (function (Services) {
-        var CartItemService = (function () {
-            function CartItemService($resource) {
+        var PlaceService = (function () {
+            function PlaceService($resource) {
                 this.$resource = $resource;
-                this.CartItemResource = $resource('/api/cartitems/:tag');
+                this.PlaceResource = $resource('/api/places/:tag');
             }
-            CartItemService.prototype.saveCartItem = function (cartitem) {
-                return this.CartItemResource.save(cartitem);
+            PlaceService.prototype.savePlace = function (place) {
+                return this.PlaceResource.save(place);
             };
-            CartItemService.prototype.getCartItems = function (shoppingcart) {
-                return this.CartItemResource.query({ tag: shoppingcart }).$promise;
+            PlaceService.prototype.getPlaces = function (category) {
+                return this.PlaceResource.query({ tag: category }).$promise;
             };
-            CartItemService.prototype.removeCartItem = function (cartitemId) {
-                return this.CartItemResource.delete({ tag: cartitemId });
+            PlaceService.prototype.removePlace = function (placeId) {
+                return this.PlaceResource.delete({ tag: placeId });
             };
-            return CartItemService;
+            return PlaceService;
         }());
-        Services.CartItemService = CartItemService;
-        angular.module('myapp').service('cartitemService', CartItemService);
+        Services.PlaceService = PlaceService;
+        angular.module('myapp').service('placeService', PlaceService);
     })(Services = myapp.Services || (myapp.Services = {}));
 })(myapp || (myapp = {}));

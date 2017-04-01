@@ -1,25 +1,25 @@
 namespace myapp.Services {
-  export class CartItemService {
-    public CartItemResource
+  export class PlaceService {
+    public PlaceResource
 
-    public saveCartItem(cartitem) {
-      return this.CartItemResource.save(cartitem);
+    public savePlace(place) {
+      return this.PlaceResource.save(place);
     }
 
-    public getCartItems(shoppingcart) {
-      return this.CartItemResource.query({tag: shoppingcart}).$promise;
+    public getPlaces(category) {
+      return this.PlaceResource.query({tag: category}).$promise;
     }
 
-    public removeCartItem(cartitemId) {
-      return this.CartItemResource.delete({tag: cartitemId})
+    public removePlace(placeId) {
+      return this.PlaceResource.delete({tag: placeId})
     }
 
     public constructor(
       public $resource
     ) {
-      this.CartItemResource = $resource('/api/cartitems/:tag');
+      this.PlaceResource = $resource('/api/places/:tag');
     }
   }
 
-  angular.module('myapp').service('cartitemService', CartItemService);
+  angular.module('myapp').service('placeService', PlaceService);
 }
